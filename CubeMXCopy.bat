@@ -32,12 +32,20 @@ REM rename project and go inside
     echo Copied project renamed.
     cd "%new_project_name%"
 
-REM if exist delete debug configuration files
-    if exist "%old_project_name% Debug.launch" (
-        del "%old_project_name% Debug.launch"
-        echo Debug file deleted.
+REM if exist delete Debug directory
+    if exist "Debug" (
+        rmdir /S /Q "Debug"
+        echo Debug directory deleted.
     ) else (
-        echo No Debug files.
+        echo No Debug directory.
+    )
+
+REM if exist delete launch configuration files
+    if exist "*.launch" (
+        del "*.launch"
+        echo launch file deleted.
+    ) else (
+        echo No launch files.
     )
     
 REM Rename .ioc project file
